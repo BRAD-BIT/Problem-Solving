@@ -1,0 +1,1545 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<algorithm>
+#include<vector>
+#include<set>
+#include<map>
+#include<unordered_map>
+#include<queue>
+#include<stack>
+#include<iterator>
+#include<cmath>
+#include<string>
+#include<sstream>
+#include<cstring>
+#include<ctype.h>		
+#include<iomanip>
+#include<functional>
+#include<bitset>
+#include<stdio.h> 
+#include<fstream>
+#include<stdlib.h>
+#include<math.h>
+#include<ctime>
+#include<string>
+#include<cstdio>
+#include<locale>
+#include<codecvt>
+using namespace std;
+#define lop(i,a,n) for(ll i=a;i<n;++i)
+#define loop(i,n,a)for(ll i=n-1;i>=a;--i)
+#define R_(s)      freopen(s, "r", stdin)
+#define W_(s)      freopen(s, "w", stdout)
+#define R_W        R_("input.txt"),W_("output.txt")
+#define ll         long long
+#define ld         long double
+#define ii         pair<ll,ll>
+#define vii        vector<ii>
+#define vi         vector<int>
+#define vll        vector<ll>
+#define vs         vector<string>
+#define vvii       vector<vector<ii>>
+#define vvi        vector<vector<int>>
+#define vvll       vector<vector<ll>>
+#define sz(v)      (ll)v.size()
+#define all(v)     v.begin(),v.end()
+#define sc(n)      scanf("%d",&n)
+#define scl(n)     scanf("%lld",&n)
+#define pr1(n)     printf("%d\n",n)
+#define pr2(n)     printf("%d " ,n)
+#define pr4(n)     printf("%lld\n",n)
+#define pr3(n)     cout<<fixed<<setprecision(2)<<n<<endl
+#define endl       "\n"
+#define PI         2*acos(0.0)
+#define DFS_GRAY  -1
+#define DFS_WHITE  0
+#define DFS_BLACK  1
+#define oo  1e9
+#define OO  1e18
+#define EPS pow(10,-9)
+int dr[] = { 1, 0, -1, 0, -1, -1, 1, 1 };
+int dc[] = { 0, -1, 0, 1, -1, 1, -1, 1 };
+const int MAX = 500 + 7;
+const int MOD = 1e9 + 7;
+class CakeParty
+{
+public:
+	string makeMove(vi pieces)
+	{
+		int Xor = 0;
+		
+		ii m(0, -1);
+		lop(i, 0, sz(pieces)) {
+			Xor ^= pieces[i];
+			if (m.first < pieces[i])m = ii(pieces[i], i);
+		}
+		if (!Xor)
+		{
+			return  "CAKE " + to_string(m.second) + " PIECES 1";
+		}
+		else
+		{
+			Xor ^= m.first;
+			return  "CAKE " + to_string(m.second) + " PIECES "+ to_string(m.first-Xor);
+		}
+	}
+};
+int main()
+{
+	int out = 2 ^ 1;
+	cout << out << endl;
+}
+//ii floydCycleFinding(int x0) {
+//	// function int f(int x) is defined earlier
+//	// 1st part: finding k*mu, hare’s speed is 2x tortoise’s
+//	int tortoise = f(x0), hare = f(f(x0)); // f(x0) is the node next to x0 
+//	while (tortoise != hare) { tortoise = f(tortoise); hare = f(f(hare)); }
+//	// 2nd part: finding mu, hare and tortoise move at the same speed 
+//	int mu = 0; hare = x0;
+//	while (tortoise != hare) { tortoise = f(tortoise); hare = f(hare); mu++; }
+//	// 3rd part: finding lambda, hare moves, tortoise stays 
+//	int lambda = 1; hare = f(tortoise);
+//	while (tortoise != hare) { hare = f(hare); lambda++; }
+//	return ii(mu, lambda);
+//}
+//void prime_interval(ll a, ll b)
+//{
+//	int sqrt = (int)std::sqrt((double)b);
+//	vi is_prime(sqrt + 1, 1);
+//	is_prime[0] = is_prime[1] = 0;
+//	for (ll i = 2; i*i <= sqrt; i++)
+//		if (is_prime[i])
+//			for (ll j = i * 2; j <= sqrt; j += i)
+//				is_prime[j] = 0;
+//
+//	vll primes;
+//	for (ll i = 2; i*i <= b; i++)
+//		if (is_prime[i])
+//			primes.push_back(i);
+//
+//	vi is_prime2(b - a + 1, 1);
+//	if (a == 1)is_prime2[0] = 0;
+//	if (a == 0)is_prime2[0] = 0, is_prime2[1] = 0;
+//
+//	lop(i, 0, sz(primes))
+//	{
+//		ll low = (ceil((ld)a / primes[i])*primes[i]);
+//		ll j = max(primes[i] * primes[i], low);
+//		for (; j <= b; j += primes[i])
+//		{
+//			is_prime2[j - a] = 0;
+//		}
+//	}
+//	//lop(i, 0, b-a+1)if (is_prime2[i])cout << i+a << endl;
+//}
+//ll superCatalan[30], Catalan[30];
+//void Super_Catalan_Number()
+//{
+//	superCatalan[1] = superCatalan[2] = 1;
+//	lop(i, 3, 27)superCatalan[i] = (3 * (2 * i - 3)*superCatalan[i - 1] - (i - 3)*superCatalan[i - 2]) / i;
+//	//num of baracking for n char
+//	//counts the number of monotonic paths along the edges of an n×n grid, which do not pass above the diagonal. A monotonic path is one which starts in the lower left corner, ?nishes in the upper right corner, and consists entirely of edges pointing rightwards or upwards and diagonal steps
+//}
+//void Catalan_Number()
+//{
+//	Catalan[0] = Catalan[1] = 1, Catalan[2] = 2;
+//	lop(i, 3, 27)Catalan[i] = Catalan[i - 1] * (2 * (i * 2 - 1)) / (i + 1);
+//	//num of binay baracting for n+1 char
+//	//counts the number of distinct binary trees with n vertices
+//	//counts the number of expressions containing n pairs of parentheses which are correctly matched
+//	//counts the number of ways a convex polygon  of n + 2 sides can be triangulated
+//	//counts the number of monotonic paths along the edges of an n×n grid, which do not pass above the diagonal. A monotonic path is one which starts in the lower left corner, ?nishes in the upper right corner, and consists entirely of edges pointing rightwards or upwards
+//}
+//void combination()
+//{
+//	lop(i, 1, 225) {
+//		nCr[i][0][0] = 1; lop(j, 1, i + 1) {
+//			lop(k, 0, 60) {
+//				nCr[i][j][k] += (nCr[i - 1][j][k] + nCr[i - 1][j - 1][k]);
+//				if (nCr[i][j][k] > 9)nCr[i][j][k + 1] = (nCr[i][j][k] / 10), nCr[i][j][k] %= 10;
+//			}
+//		}
+//	}
+//}
+//void print_ncr(int n, int k)
+//{
+//	int x = -1;
+//	loop(i, 60, 0)if (nCr[n][k][i]) { x = i; break; }
+//	if (x == -1) { cout << 0; return; }
+//	loop(i, x + 1, 0)cout << nCr[n][k][i];
+//}
+//num of perfect num from 1 to a =int(sqrt(a))
+//zwd a7tmal al fight in pro. lw ht7l count 3la eddhom
+//int  LIS(vi arr)
+//{
+//	vi c(sz(arr) + 1), dp(sz(arr));
+//	int len = 1;
+//	dp[0] = 1, c[1] = arr[0];
+//	lop(i, 1, sz(arr))
+//	{
+//		if (arr[i] < c[1])
+//			c[1] = arr[i], dp[i] = 1;
+//		else
+//			if (arr[i] > c[len])
+//				dp[i] = ++len, c[len] = arr[i];
+//			else
+//			{
+//				int s = 1, e = len, mid, k = -1;
+//				while (s <= e)
+//				{
+//					mid = (s + e) / 2;
+//					if (arr[i] < c[mid])
+//					{
+//						if (c[mid - 1] < arr[i] && arr[i] < c[mid])
+//							k = mid, s = mid + 1;
+//						else e = mid - 1;
+//					}
+//					else if (arr[i] > c[mid]) s = mid + 1;
+//				}
+//				if (k == -1) {
+//					dp[i] = 1;
+//					continue;
+//				}
+//				c[k] = arr[i];
+//				dp[i] = k;
+//			}
+//	}
+//	return len;
+//}
+//modA = (10 * modA + (s[i] - '0')) % a;
+//modB = (fac*(s[j] - '0') + modB) % b;
+//b up in dp if idx start from 0 then i+1 in mem beacame i-1
+//backtracking vs bruteforce(depentant(do serach undo(if no undo it became floodfill)) - indepentant)
+//void tarjan(int v, int p)(E+V)
+//{
+//	dfs_num[v] = dfs_low[v] = ++cnt;
+//	for (int i = 0; i < graph[v].size(); ++i)
+//	{
+//		int child = graph[v][i];
+//		if (dfs_num[child] == -1)
+//		{
+//			tarjan(child, v);
+//			if (dfs_low[child] > dfs_num[v])
+//			{
+//				cout << v << "--Bridge--" << child << endl;
+//				bridges++;
+//			}
+//			dfs_low[v] = min(dfs_low[v], dfs_low[child]);
+//		}
+//		else if (child != p) dfs_low[v] = min(dfs_low[v], dfs_num[child]);
+//	}
+//}
+//aplication of kruskal(second MST,partial MST,minmax)
+//class unionFind
+//{
+//	vector<int> rank, parent;
+//public:
+//	unionFind(int n)
+//	{
+//		rank.resize(n); parent.resize(n);
+//		for (int i = 0; i < n; ++i)rank[i] = 0, parent[i] = i;
+//	}
+//	int find_set(int i) { return (parent[i] == i) ? i : (parent[i] = find_set(parent[i])); }
+//	bool isSameSet(int i, int j) { return find_set(i) == find_set(j); }
+//	bool union_set(int i, int j) {
+//		if (!isSameSet(i, j))
+//		{
+//			int x = find_set(i), y = find_set(j); if (rank[x] > rank[y]) parent[y] = x;
+//			else { parent[x] = y; if (rank[x] == rank[y]) rank[y]++; }
+//			return 1;
+//		}
+//		return 0;
+//	}
+//};
+//struct edge{
+//	int from, to, weight; 
+//	edge(int f, int t, int w) :from(f),to(t),weight(w){}
+//	bool operator<(const edge& E)const{ return E.weight<weight; }
+//};
+//vector<edge>graph; int n; int MST_W = 0; vector<edge>path;
+//void kruskal_MST()(Vlog(V))
+//{
+//	UnionFind UN(n);
+//	priority_queue<edge>q; for (int i=0; i < graph.size(); ++i)q.push(graph[i]);
+//	while (!q.empty())
+//	{
+//		edge cur = q.top(); q.pop();
+//		if (UN.union_set(cur.from, cur.to))
+//		{
+//			MST_W += cur.weight;
+//			path.push_back(cur);
+//		}
+//	}
+//}
+//void prim_MST()(Vlog(V))if i had grid of the shotest pathes of a tree we will assum that the weights are edges and constract the MST and it will gives us the grid
+//{
+//	priority_queue<edge>p; p.push(edge(0, 0)); int vis[100]; memset(vis, 0, sizeof vis); 
+//	while (!p.empty())
+//	{
+//		edge cur = p.top(); p.pop();
+//		if (vis[cur.indx])continue;
+//		vis[cur.indx] = 1;
+//		MST_W += cur.weight;
+//		//path.push_back(cur.indx);
+//		for (int i = 0; i < graph[cur.indx].size(); i++)
+//		{
+//			edge e = graph[cur.indx][i]; if (!vis[e.indx])p.push(e);
+//		}
+//	}
+//}
+//aplication of max flow(no. of pathes with no common egde(put cap 1 on edges then every edge walk on it lit cap 0)-vertex cap. split - no. of pathes with no common edge and vertex 
+//-multi source and multi sink(add super source connected to all sources with cap. oo and conect sinks with super sink by oo cap)
+//-bipartite matching(multi source and multi sink)-min covering path(get using max flow)
+//int max_flow()(v*E^2)
+//{
+//	int mf = 0; --s, --t;
+//	while (1)
+//	{
+//		o++;
+//		queue<int>q; q.push(s); memset(vis, 0, sizeof vis); memset(prv, -1, sizeof prv);
+//		vis[s] = 1;
+//		while (!q.empty())
+//		{
+//			o++;
+//			int cur = q.front(); q.pop();
+//			for (int i = 0; i < graph2[cur].size(); i++)
+//			{
+//				o++;
+//				int child = graph2[cur][i];
+//				if (!vis[child] && graph1[cur][child]>0)
+//				{
+//					vis[child] = 1; prv[child] = cur; q.push(child); if (child == t)goto NEXT;
+//				}
+//			}
+//		}
+//	NEXT:
+//		vector<int>path;
+//		if (prv[t] == -1)return mf;
+//		int i = t;
+//		path.push_back(t);
+//		while (prv[i] != s)
+//		{
+//			o++;
+//			path.push_back(prv[i]);
+//			i = prv[i];
+//		}
+//		path.push_back(s);
+//		reverse(path.begin(), path.end());
+//		int mn = oo;
+//		for (int i = 0; i < path.size() - 1; i++)mn = min(mn, graph1[path[i]][path[i + 1]]), o++;
+//		for (int i = 0; i < path.size() - 1; i++)
+//		{
+//			graph1[path[i]][path[i + 1]] -= mn;
+//			graph1[path[i + 1]][path[i]] += mn; o++;
+//		}
+//		mf += mn;
+//	}
+//}
+//graph using floyd run floyd then get the max shortest path
+//bool is_effec(int s, int d)
+//{
+//	for (int i = 0; i < n; i++)if (graph[i][i] < 0 && graph[s][i] < oo && graph[i][d] < oo)return true;
+//	return false;
+//}
+//bool is_negtive()
+//{
+//	floyd();
+//	for (int i = 0; i < n; i++)if (graph[i][i] < 0)return true;
+//	return false;
+//}
+//void countpath()
+//{
+//	for (int k = 0; k < n; k++)
+//		for (int i = 0; i < n; i++)
+//			for (int j = 0; j < n; j++)
+//				graph[i][j] += graph[i][k] * graph[j][k];
+//}
+//void longest()
+//{
+//	for (int k = 0; k < n; k++)
+//		for (int i = 0; i < n; i++)
+//			for (int j = 0; j < n; j++)
+//				graph[i][j] = max(graph[i][j], max(graph[i][k], graph[k][j]));
+//}
+//void minmax()
+//{
+//	for (int k = 0; k < n; k++)
+//		for (int i = 0; i < n; i++)
+//			for (int j = 0; j < n; j++)
+//				graph[i][j] = min(graph[i][j], max(graph[i][k], graph[k][j]));
+//}
+//void print_floyd(int a,int b)
+//{
+//	if (a != b)print_floyd(a, p[a][b]);
+//		cout << b+1 << " ";
+//}
+//void floyd()
+//{
+//	int n, m; cin >> n >> m;
+//	for (int i = 0; i < 407; i++)for (int j = 0; j < 407; j++){ graph[i][j] = oo; p[i][j] = i; }
+//	for (int i = 0; i < m; i++){ int a, b, c; cin >> a >> b >> c; graph[--a][--b] = c; graph[b][a] = c; }
+//	for (int k = 0; k < n; k++)
+//		for (int i = 0; i < n; i++)
+//			for (int j = 0; j < n; j++)
+//				if (graph[i][j] > graph[i][k] + graph[j][k]){graph[i][j] = graph[i][k] + graph[k][j]; p[i][j] = p[k][j];}
+//	//int a, b; cin >> a >> b;
+//	print_floyd(0, n-1);
+//}
+//void floyd()
+//{
+//	for (int v = n - 1; v >= 0; --v)
+//	{
+//		int k = removed[v];
+//		for (int i = 0; i < n; ++i)
+//			for (int j = 0; j < n; ++j)
+//				graph[i][j] = min(graph[i][j], graph[i][k] + graph[k][j]);
+//		for (int i = v; i < n; ++i)
+//			for (int j = v; j < n; ++j)
+//				ANS[v] += graph[removed[i]][removed[j]];
+//	}
+//}
+//void floyd()
+//{
+//	for (int k = 0; k < n; k++)
+//		for (int i = 0; i < n; i++)
+//			for (int j = 0; j < n; j++)
+//				if (G1[i][k] + G1[k][j] <= G1[i][j])
+//				{
+//		if (G1[i][k] + G1[k][j] < G1[i][j])G2[i][j] = 0; G1[i][j] = G1[i][k] + G1[k][j]; G2[i][j] += (G2[i][k] * G2[k][j]);
+//				}
+//}
+
+//struct edge
+//{
+//	int indx, weight;
+//	edge(int i, int w) :indx(i), weight(w){}
+//	bool operator<(const edge&e)const{ return weight>e.weight; }
+//};
+//
+//vector<vector<edge>>graph2;
+//vector<vector<int>>graph; int n;
+//void Dijkstra1(int start)//o(n^2)
+//{
+//	vector<int>dis(n, oo); vector<int>vis(n, 0); vector<int>prev(n, -1);
+//	dis[start] = 0;  pair<int, int>cur;
+//	while (1)
+//	{
+//		cur.first = oo; cur.second = -1;
+//		for (int i = 0; i < n; i++)
+//			if (!vis[i] && dis[i] < cur.first){ cur.first = graph[start][i]; cur.second = i; }
+//
+//		if (cur.second == -1)break;
+//		vis[cur.second] = 1;
+//
+//		for (int i = 0; i < n; i++)
+//			if (dis[i] >dis[cur.second] + graph[cur.second][i]){ dis[i] = dis[cur.second] + graph[cur.second][i]; prev[i] = cur.second; }
+//	}
+//}
+//void Dijkstra()(vlog(v))
+//{
+//	priority_queue<edge>p; p.push(edge(0, 0)); dis[0] = 0;
+//	while (!p.empty())
+//	{
+//		edge cur = p.top(); p.pop();
+//
+//		if (dis[cur.indx] < cur.weight)continue;
+//		for (int i = 0; i < graph[cur.indx].size(); i++)
+//		{
+//			edge ee(graph[cur.indx][i].first, graph[cur.indx][i].second + cur.weight);
+//			if (dis[ee.indx]>dis[cur.indx] + graph[cur.indx][i].second)
+//			{
+//				ee.weight = dis[ee.indx] = dis[cur.indx] + graph[cur.indx][i].second; prv[ee.indx] = cur.indx;
+//			}
+//			p.push(ee);
+//		}
+//	}
+//}
+
+//ll gcd(ll a, ll b){ return b == 0 ? a : gcd(b, a%b); }
+
+//ll lcm(ll a, ll b){ return a*(b / gcd(a, b)); }
+
+//int x, y, d;
+//void extendedEuclid(int a, int b) 
+//{
+//	if (b == 0) { x = 1; y = 0; d = a; return; }  
+//	extendedEuclid(b, a % b);
+//	int x1 = y; 
+//	int y1 = x - (a / b) * y; 
+//	x = x1;
+//	y = y1;
+//}
+//void solve_extendedEuclid(ll a, ll b, ll c, ll n)
+//{
+//	extendedEuclid(a, b);
+//	if (c%d != 0) {
+//		cout << "No Integral answer\n";
+//		return;
+//	}
+//	ll low = ceil(-x*c / (ld)b), high = floor(y*c / (ld)a);
+//	if (low>high) {
+//		cout << "No Integral answer\n";
+//		return;
+//	}
+//	//cout << high - low + 1 << endl;
+//	//lop(n_pos, low, low + 20)
+//	//cout << x*c / d + (b / d)*n_pos << " " << y*c / d - (a / d)*n_pos << endl;
+//}
+//bool is_A_div_B(string A, int B)
+//{
+//	int mod = 0; int fac = 1;
+//	for (int i = 0; i < A.length(); i++)
+//	{
+//		mod = (mod * 10 + (A[i] - '0'));//left to right
+//		mod = mod + fac*(A[i] - '0');//right to left the number
+//		fac *= 10; fac %= B;
+//		mod %= B;
+//	}
+//	if (mod == 0)return true; else return false;
+//}
+//int Find_Rotations(int a[], int n)
+//{
+//	int ans = 0, low = 0, high = n - 1, mid;
+//	while (low <= high)
+//	{
+//		if (a[low] <= a[high])return low;//case1
+//		mid = (low + high) / 2;
+//		if (a[(mid + 1) % n] >= a[mid] && a[(mid + n - 1) % n] <= a[mid])return mid;//case2
+//		if (a[mid] <= a[high])high = mid - 1;//case3
+//		else
+//		if (a[mid] >= a[low])low = mid + 1;//case4
+//
+//	}
+//}
+
+//void BFS(int start)
+//{
+//	queue<int>q; len[start] = 0;q.push(start);
+//	int cur, dep;
+//	while (!q.empty())
+//	{
+//		cur = q.front(); q.pop; dep = len[cur];
+//		for (int i = 0; i < graph[cur].size(); i++)
+//		{
+//			int child = graph[cur][i];
+//			if (len[child] == -1)
+//			{
+//				len[child] = dep + 1;
+//				q.push(child);
+//			}
+//		}
+//	}
+//}
+
+//void DFS(int node)
+//{
+//	visited[node] = 1;
+//	for (int i = 0; i < graph[node].size(); i++)
+//	{
+//		int child = graph[node][i];
+//		if (!visited[child])DFS(child);
+//	}
+//}
+//int ConnectedComponenetsCnt(int visited[], vector<vector<int>>graph)
+//{
+//	int cnt = 0;
+//	for (int i = 0; i < graph.size(); i++)
+//	{
+//		if (!visited[i])
+//		{
+//			cnt++;
+//			DFS(visited, graph, i + 1);
+//		}
+//	}
+//	return cnt;
+//}
+//bitset<70> string name(int); by7wl int to string fe 70 mn alymen;
+//cout << fixed << setprecision(10) << almot8er; dh 3shan atl3 ad ah b3d al-3lama
+
+//int binaryToBase10(int n) {
+//
+//	int output = 0;
+//
+//	for (int i = 0; n > 0; i++) {
+//
+//		if (n % 10 == 1) {
+//			output += pow(2, i);
+//		}
+//		n /= 10;
+//	}
+//
+//	return output;
+//}
+
+/*void runEratosthenesSieve(int upperBound)
+{
+int upperBoundSquareRoot = (int)sqrt((double)upperBound);
+bool *isComposite = new bool[upperBound + 1];
+memset(isComposite, 0, sizeof(bool)* (upperBound + 1));
+for (int m = 2; m <= upperBoundSquareRoot; m++)
+{
+if (!isComposite[m])
+{
+cout << m << " " << endl;
+for (int k = m * m; k <= upperBound; k += m)
+{
+isComposite[k] = true;
+}
+}
+}
+for (int m = upperBoundSquareRoot; m <= upperBound; m++)
+{
+if (!isComposite[m])
+{
+cout << m << " " << endl;
+}
+}
+delete[] isComposite;
+}*/
+
+//void Prime_Sieve(ll n)
+//{
+//	vector<int>is_prime(n + 1, true);
+//	is_prime[0] = is_prime[1] = 0;
+//	for (int i = 0; i*i <= n; i++)
+//		if (is_prime[i])
+//			for (int j = 2*i; j <= n; j += i)
+//				is_prime[j] = 0;
+//}
+
+//int prime_factor(int n)
+//{
+//	int ans=0,num=n;
+//	while(n%2==0)n/=2,ans=1;
+//	for(int i=3;i*i<=num;i++){if(n%i!=0)continue;ans++;while(n%i==0)n/=i;}
+//	if (n > 1)++ans;
+//	return ans;
+//}
+//
+//inline bool IsPrime(int number)
+//{
+//	if (((!(number & 1)) && number != 2) || (number < 2) || (number % 3 == 0 && number != 3))
+//		return (false);
+//
+//	for (int k = 1; 36 * k*k - 12 * k < number; ++k)
+//	{
+//		if ((number % (6 * k + 1) == 0) || (number % (6 * k - 1) == 0))
+//			return (false);
+//	}
+//	return true;
+//}
+//
+//
+//bool IsPrime2(ll n)
+//{
+//	if (n < 2||n%2==0)return false;
+//	if (n == 2)return true;
+//
+//	for (int i = 3; i*i < n; i += 2){ if (n%i == 0)return false;  } return true;
+//}
+
+/*class Fenwick_Tree
+{
+public:
+vi FT;
+Fenwick_Tree(int n){FT.resize(n+1,0);}
+int LSOne(int x){return x&-x;}
+int RSQ(int b)
+{if(b<=0)return 0;return FT[b]+RSQ(b-LSOne(b));}
+int RSQ(int a,int b){return RSQ(b)-RSQ(a-1);}
+void update(int i,int v)
+{
+if(i>=sz(FT))return;
+FT[i]+=v;update(i+LSOne(i),v);
+}
+};*/
+
+/*class fenwick_tree_2D
+{
+public:
+vvll FT;
+fenwick_tree_2D(int n){FT.resize(n+1);lop(i,0,n+1)FT[i].resize(n+1,0);}
+int LSOne(int i){return i&-i;}
+void update(int x,int y,int v)
+{
+for(int i=x;i<=N;i+=(i&-i))
+for(int j=y;j<=N;j+=(j&-j))
+FT[i][j]+=v;
+}
+int RSQ(int x,int y)
+{
+int ret=0;
+for(int i=x;i>0;i-=(i&-i))
+for(int j=y;j>0;j-=(j&-j))
+ret+=FT[i][j];
+return ret;
+}
+};*/
+/*class Sparse_Table
+{
+public:
+vvi ST;
+Sparse_Table(int N,int MAX_log)
+{
+ST.resize(N);lop(i,0,N)ST[i].resize(MAX_log);
+lop(i,0,N)ST[i][0]=i;
+for(int j=1;(1<<j)<=N;++j)
+for(int i=0;i+(1<<j)-1<N;++i)
+if(arr[ST[i][j-1]]<arr[ST[i+(1<<(j-1))][j-1]])ST[i][j]=ST[i][j-1];
+else ST[i][j]=ST[i+(1<<(j-1))][j-1];
+}
+int RMQ(int l,int r)
+{
+int k = (int)floor(log((double)r-l+1) / log(2.0));
+if (arr[ST[l][k]] <= arr[ST[r-(1<<k)+1][k]])return arr[ST[l][k]];
+else return arr[ST[r-(1<<k)+1][k]];
+}
+};
+
+
+//class SegmentTree
+//{
+//public:
+//	vector<node> ST;
+//	SegmentTree(int num)
+//	{
+//		ST.resize(4 * num);
+//	}
+//	node join(node left, node right)
+//	{
+//		int mn = min(left.open, right.closed);
+//		int a = left.open + right.open - mn;
+//		int b = left.closed + right.closed - mn;
+//		int c = left.max_sec + right.max_sec + 2 * mn;
+//		return node(a, b, c);
+//	}
+//	void bulid(int p, int start, int end)
+//	{
+//		if (start == end)
+//		{
+//			ST[p].open = (A[start] == '(');
+//			ST[p].closed = (A[start] == ')');
+//			return;
+//		}
+//		int mid = (start + end) / 2;
+//		bulid(2 * p, start, mid); bulid(2 * p + 1, mid + 1, end);
+//		ST[p] = join(ST[2 * p], ST[2 * p + 1]);
+//	}
+//	node get(int p, int start, int end)
+//	{
+//		if (start>end || end<from || start>to)return node();
+//		int mid = (start + end) / 2;
+//		if (from <= start&&to >= end)return ST[p];
+//		if (to <= mid)return join(get(2 * p, start, mid), node());
+//		if (from > mid)return join(get(2 * p + 1, mid + 1, end), node());
+//		node a = get(2 * p, start, mid);
+//		node b = get(2 * p + 1, mid + 1, end);
+//		return join(a, b);
+//	}
+//};
+
+//class SegmentTree
+//{
+//public:
+//	vector<int> ST; int n; int from, to;
+//	vector<int>ismixed;
+//	SegmentTree(int num)
+//	{
+//		ismixed.resize(4 * num, 0);
+//		ST.resize(4 * num, 0);
+//	}
+//	int bulid(int p, int start, int end)//nlogn
+//	{
+//		if (start == end)return ST[p] = 1;
+//		return ST[p] = bulid(2 * p, start, (start + end) / 2) + bulid(2 * p + 1, ((start + end) / 2) + 1, end);
+//	}
+//	int insert(int p, int start, int end, int num)//log(n)
+//	{
+//		ST[p]++;
+//		if (start == end)return ST[p];
+//		if (num <= (start + end) / 2)return insert(2 * p, start, (start + end) / 2, num);
+//		else return insert(2 * p + 1, (start + end) / 2 + 1, end, num) + ST[2 * p];
+//	}
+//	int remove(int p, int start, int end, int num)//log(n)
+//	{
+//		ST[p]--;
+//		if (start == end)return ST[p];
+//		if (num < (start + end) / 2)return remove(2 * p, start, (start + end) / 2, num);
+//		else return remove(2 * p + 1, (start + end) / 2 + 1, end, num) + ST[2 * p];
+//	}
+//	int del_kTH(int p, int start, int end, int kth)//log(n)
+//	{
+//		ST[p]--;
+//		if (start == end)return start;
+//		if (kth <= ST[2 * p])return del_kTH(2 * p, start, (start + end) / 2, kth);
+//		else return del_kTH(2 * p + 1, (start + end) / 2 + 1, end, kth - ST[2 * p]);
+//	}
+//	int get_kTH(int p, int start, int end, int kth)//log(n)
+//	{
+//		if (start == end)return start;
+//		if (kth <= ST[2 * p])return get_kTH(2 * p, start, (start + end) / 2, kth);
+//		else return get_kTH(2 * p + 1, (start + end) / 2 + 1, end, kth - ST[2 * p]);
+//	}
+//	int RMQ(int p, int start, int end, int from, int to)//but we will save min in St insted of num of elem.
+//	{
+//		if (start >= from&&to >= end)return ST[p];
+//		int mid = (start + end) / 2;
+//		if (to <= mid)return RMQ(2 * p, start, mid, from, to);
+//		if (from > mid)return RMQ(2 * p + 1, mid + 1, end, from, to);
+//		int a = RMQ(2 * p, start, mid, from, to);
+//		int b = RMQ(2 * p + 1, mid + 1, end, from, to);
+//		return a > b ? a : b;
+//	}
+//	void display(int p, int start, int end)//nlog(n)
+//	{
+//		if (start == end)
+//		{
+//			int cnt = ST[p];
+//			while (cnt--){ cout << start << " "; }
+//		}
+//		if (start < end)
+//		{
+//			display(2 * p, start, (start + end) / 2);
+//			display(2 * p + 1, (start + end) / 2 + 1, end);
+//		}
+//	}
+//	void lazyupdate(int p, int start, int end)
+//	{
+//		if (from > end || to < start)return;
+//
+//		if (from <= start&&to >= end&&!ismixed[p])
+//		{
+//			ST[p]++; return;
+//		}
+//
+//		if (!ismixed[p])
+//		{
+//			ST[2 * p] = ST[2 * p + 1] = ST[p];
+//		}
+//
+//		int mid = (start + end) / 2;
+//		lazyupdate(2 * p, start, mid);
+//		lazyupdate(2 * p + 1, mid + 1, end);
+//
+//		ismixed[p] = ismixed[2 * p] || ismixed[2 * p + 1] || ST[2 * p] != ST[2 * p + 1];
+//		ST[p] = max(ST[2 * p], ST[2 * p + 1]);
+//
+//	}
+//	//best interval sum node(best left-best right-total sum,ans)- most increasing subseq - first num biger than given value(RMQ) -
+//	// smallest number biger than given value(put all the seq ) - co-ordiate comparassion
+/////trick we can increase all elements in {l,r} by arr[l]++,arr[r+1]--;int v=0;lop(i,n)v+=arr[i];ocr[i]=v;
+//};
+
+//void Kosaraju(int node, int pass)
+//{
+//	dfs_num[node] = 1;
+//	for (int i = 0; i<graph[pass][node].size(); ++i)
+//	{
+//		int child = graph[pass][node][i];
+//		if (dfs_num[child] == DFS_WHITE)Kosaraju(child, pass);
+//	}
+//	s.push_back(node);
+//}
+//int SCC(int n)
+//{
+//	int cnt = 0;
+//	dfs_num.resize(n, DFS_WHITE);
+//	for (int i = 0; i < n; i++)if (dfs_num[i] == DFS_WHITE)Kosaraju(i, 0);
+//	dfs_num.assign(n, DFS_WHITE);
+//	for (int i = n - 1; i >= 0; i--)if (dfs_num[s[i]] == DFS_WHITE)cnt++, Kosaraju(s[i], 1);
+//	return cnt;
+//}
+
+//class TrieTree
+//{
+//	TrieTree* child[26]; int isleaf;
+//public:
+//	TrieTree(){ memset(child, 0, sizeof child); isleaf = 0; }
+//	void insert(char *str)
+//	{
+//		if (*str == '\0'){ isleaf = 1; return; }
+//		int i = *str - 'a';
+//		if (child[i] == 0)child[i] = new TrieTree();
+//		child[i]->insert(str + 1);
+//	}
+//	bool wordExist(char*str)
+//	{
+//		if (*str == '\0')return isleaf;
+//		int i = *str - 'a';
+//		if (child[i] == 0)return 0;
+//		return child[i]->wordExist(str + 1);
+//	}
+//	bool prefixExist(char *str)
+//	{
+//		if (*str == '\0')return  1;
+//		int i = *str - 'a';
+//		if (child[i] == 0)return 0;
+//		return child[i]->prefixExist(str + 1);
+//	}
+//};
+
+//vi computlongesprefix(string pat)
+//{
+//	int m = pat.length();
+//	vi longestprefix(m, 0);
+//	for (int i = 1, k = 0; i < m; ++i)
+//	{
+//		while (k>0 && pat[i] != pat[k])k = longestprefix[k - 1];
+//		if (pat[i] == pat[k])longestprefix[i] = ++k; else longestprefix[i] = k;
+//	}
+//	return longestprefix;
+//}
+//void KMP(string str, string pat)
+//{
+//	int m = pat.length();
+//	int n = str.length();
+//	vi longestprefix = computlongesprefix(pat); vi prefixfreq(n + 1);
+//	for (int i = 0, k = 0; i < n; ++i)
+//	{
+//		while (k>0 && str[i] != pat[k])k = longestprefix[k - 1];
+//		if (str[i] == pat[k])++k;
+//		if (k == m)
+//		{
+//			cout << i - k + 1 << endl;
+//			k = longestprefix[k - 1];
+//		}
+//	}
+//	// count the freq of all prefix in given string s if we want to count the freq in other string we constract s&T;
+//	// and we use the num freq to get num of unqiq prefixes and to get unqui substring (coutn +=countunquiprefix(rev(p)))
+//  lop(i, 0, n){int k = longestprefix[i];while (k > 0){ prefixfreq[k - 1]++; k = longestprefix[k - 1]; }}
+//	for (int i = 0; i < n; i++)prefixfreq[longestprefix[i]]++;
+//	for (int i = n - 1; i > 0; i--)prefixfreq[longestprefix[i - 1]] += prefixfreq[longestprefix[i]];
+//	prefixfreq.erase(prefixfreq.begin());
+//}
+////KMP apps (max suffix or prefix palindrom str@reverse(str) run failur fun.
+////- min num of char add to str to be palndrom get max palndrom suffix and add rest of string -
+//// min repetation get flaiar fun if(str Len % (str len -F[n-1]  )==0) then min reputaion len = str-F[n-1]
+
+
+/*void Z_Algrothim(string str)
+{
+int n=str.length();
+vi Z(n,0);
+for(int i=1,L=0,R=0;i<n;i++)
+{
+if(i<=R)Z[i]=min(Z[i-L],R-i+1);
+while(i+Z[i]<n&&str[Z[i]]==str[i+Z[i]])Z[i]++;
+if(i+Z[i]-1>R)L=i,R=i+Z[i]-1;
+}
+}*/
+//class matrix
+//{
+//public:
+//	vvll mat;
+//	matrix(ll n, ll m, ll num = -1)
+//	{
+//
+//		mat.resize(n);
+//		if (num == -1)
+//			lop(i, 0, n) { mat[i].resize(m, 0); mat[i][i] = 1; }
+//		else
+//			lop(i, 0, n)mat[i].resize(m, num);
+//	}
+//	static vvll multi_matrix(vvll a, vvll b)
+//	{
+//		matrix c(a.size(), b[0].size(), 0);
+//		lop(i, 0, a.size())lop(j, 0, b[0].size())
+//		{
+//			lop(k, 0, b.size())c.mat[i][j] += (a[i][k] * b[k][j]) % MOD, c.mat[i][j] %= MOD;
+//		}
+//		return c.mat;
+//	}
+//	static vvll matrix_power(vvll a, ll k)
+//	{
+//		if (k == 0) { matrix c(a.size(), a.size()); return c.mat; }
+//		if (k % 2 == 1)return multi_matrix(a, matrix_power(a, k - 1));
+//		return matrix_power(multi_matrix(a, a), k / 2);
+//	}
+//};
+//void factors(int n)
+//{
+//	set<int>se;
+//	if (mp2[n]){ cout << "Already on\n"; return; }
+//	for (int i = 1; i*i <= n; ++i)
+//	{
+//		int a = i, b = n / i;
+//		if (n%a == 0 ){ cout<<a<<endl; }
+//		if (n%b == 0 ){ cout<<b<<endl; }
+//	}
+//}
+
+//ll totient(ll n)
+//{
+//	ll res = 0, j; if (n == 1) return 1; res = n;
+//	if (n % 2 == 0){ res -= res / 2; while (n % 2 == 0) n /= 2; }
+//	for (j = 3; j * j <= n; j += 2)
+//		if (n % j == 0){ res -= res / j; while (n % j == 0) n /= j; }
+//	if (n > 1) res -= res / n; return res;
+//}
+//ll power_log(ll b, ll p){
+//	ll mul = b, ret = 1;
+//	while (p){
+//		if (p & 1)ret = (ret*mul) % MOD;
+//		mul = (mul*mul) % MOD;
+//		p >>= 1;
+//	}
+//	return ret;
+//}
+
+//vi convert_to_base_n(ll num, ll base)
+//{
+//	vi a;
+//	while (num)
+//	{
+//		a.push_back(num%base);
+//		num /= base;
+//	}
+//  revers(all(a));
+//	return a;
+//}
+
+//an undirected graph has an Euler path if all except two vertices have even degrees.
+//This Euler path will start from one of these odd degree vertices and end in the other
+//Euler path on directed graph is also possible: Graph must be connected, has equal in/outdegree vertices, 
+//at most one vertex with indegree - outdegree = 1, and at most one vertex with outdegree - indegree = 1
+// on undirected if there is no odd dgree we start from any node if theres two we start from one of them and of we have choice 
+//between bridge and non bridge we choose the non bridge
+
+
+//Probabilities
+// hat:: an=(n-1)*(an-1+an-2)
+
+
+//void ith_permutation(int len, int nth)
+//{
+//	vll perm(len), iden(len), fact(len);
+//	fact[1] = 1, fact[0] = 1;
+//	lop(i, 2, len)fact[i] = i*fact[i - 1];
+//	lop(i, 0, len)iden[i] = i;
+//	loop(i, len, 0)
+//	{
+//		int p = nth / fact[i];
+//		nth %= fact[i];
+//		perm[len - 1 - i] = iden[p];
+//		iden.erase(iden.begin() + p);
+//	}
+//	lop(i, 0, len)cout << perm[i] << " "; cout << endl;
+//}
+//void permutation_ith(vll perm)
+//{
+//	int len = sz(perm);
+//	vll fact(len), iden(len);
+//	fact[1] = 1, fact[0] = 1;
+//	lop(i, 2, len)fact[i] = i*fact[i - 1];
+//	lop(i, 0, len)iden[i] = i;
+//	int nth = 0;
+//	loop(i, len, 0)
+//	{
+//		int p = fact[i];
+//		int k;
+//		lop(j, 0, sz(iden))if (iden[j] == perm[len - i - 1]){ k = j; break; }
+//	}//		nth += p*k;
+//		iden.erase(iden.begin() + k);
+
+//	cout << nth << endl;
+//}
+
+//ll NCR(ll n, ll r)
+//{
+//	if (r > n) return 0;
+//	if (r * 2 > n) r = n - r;
+//	if (r == 0) return 1;
+//	ll ans = n;
+//	lop(i, 2, r + 1){ ans *= (n - i + 1); ans /= i; }
+//	return ans;
+//}
+
+//void combination(ll n)
+//{
+//	lop(i, 0, n)nCr[i][0] = 1, nCr[i][i] = 1;
+//	lop(i, 1, n)lop(j, 0, n)if (i != j)nCr[i][j] = (nCr[i - 1][j] + nCr[i - 1][j - 1]);
+//}
+
+//string nth_permutation(string s, ll nth)
+//{
+//	map<char, int>mp; lop(i, 0, s.length())mp[s[i]]++;
+//	string ans;
+//	loop(i, s.length(), 0)
+//	{
+//		ll p, rank = 0;
+//		for (map<char, int>::iterator u = mp.begin(); u != mp.end(); u++)
+//		{
+//			if (u->second != 0)
+//			{
+//				u->second--; p = fact[i];
+//				for (map<char, int>::iterator v = mp.begin(); v != mp.end(); v++)p /= fact[v->second];
+//				if (rank + p >= nth)
+//				{
+//					ans += u->first; nth -= rank; break;
+//				}
+//				else{ rank += p; u->second++; }
+//			}
+//		}
+//	}
+//	return ans;
+//}
+
+//vi perm_apply(vi pF, vi pS)
+//{
+//	vi ans(sz(pF));
+//	lop(i, 0, sz(pF))ans[i] = pS[pF[i]];
+//	return ans;
+//}
+//vi perm_pow(vi pF, vi pS, int k, int cK)
+//{
+//	if (k == 0)return pF;
+//	if (k == 1)return pS;
+//	vi cur = perm_pow(pF, pS, k / 2, cK);
+//	cur = perm_apply(cur, cur);
+//	if (k % 2)cur = perm_apply(cur, pS);
+//	if (k == cK)cur = perm_apply(pF, cur);
+//	return cur;
+//}
+//class line
+//{
+//public:
+//	ld a, b, c;
+//	line(){ a = b = c = 0.0; }
+//	line(ld aa, ld bb, ld cc) :a(aa), b(bb), c(cc){};
+//	line pointsToLine(point p1, point p2)
+//	{
+//		line l;
+//		if (fabs(p1.x - p2.x) < EPS){ l.a = 1.0; l.b = 0.0; l.c = -p1.x; }
+//		else
+//		{
+//			l.a = -(ld)(p1.y - p2.y) / (p1.x - p2.x); l.b = 1.0;
+//			l.c = -(ld)(l.a * p1.x) - p1.y;
+//		}
+//		return l;
+//	}
+//	bool areParallel(line l1, line l2) { return (fabs(l1.a - l2.a) < EPS) && (fabs(l1.b - l2.b) < EPS); }
+//	bool areSame(line l1, line l2) { return areParallel(l1, l2) && (fabs(l1.c - l2.c) < EPS); }
+//	bool areIntersect(line l1, line l2, point &p) {
+//		if (areParallel(l1, l2)) return false;
+//		p.x = (l2.b * l1.c - l1.b * l2.c) / (l2.a * l1.b - l1.a * l2.b);
+//		if (fabs(l1.b) > EPS) p.y = -(l1.a * p.x + l1.c); else p.y = -(l2.a * p.x + l2.c); return true;
+//	}
+//};
+//class point
+//{
+//public: 
+//    ld x, y;
+//	point(){ x = y = 0.0; }
+//	point(ld xx, ld yy) :x(xx), y(yy){}
+//    static ld dist(point p1, point p2){ return sqrt((p1.x - p2.x)*(p1.x - p2.x) + (p1.y - p2.y)*(p1.y - p2.y)); }
+//    static point rotate_point(point pp, ld angle, point around){
+//	angle = (angle*PI) / 180.000;
+//	return point(cos(angle) * (pp.x - around.x) - sin(angle) * (pp.y - around.y) + around.x,
+//		sin(angle) * (pp.x - around.x) + cos(angle) * (pp.y - around.y) + around.y);}
+//	bool operator<(point p)const{ if (fabs(x - p.x)>EPS)return x < p.x; return y < p.y; }
+//	bool operator==(point p)const{ return fabs(x - p.x) < EPS&&fabs(y - p.y) < EPS; }
+//};
+//struct vec
+//{
+//	ld x, y;
+//	vec(ld _x, ld _y) : x(_x), y(_y) {}
+//	static vec toVec(point a, point b)// convert 2 points to vector a->b 
+//	{
+//		return vec(b.x - a.x, b.y - a.y);
+//	};
+//	static vec scale(vec v, ld s) // nonnegative s = [<1 .. 1 .. >1] // shorter.same.longer
+//	{
+//		return vec(v.x * s, v.y * s);
+//	}
+//	static point translate(point p, vec v) // translate p according to v 
+//	{
+//		return point(p.x + v.x, p.y + v.y);
+//	}
+//	static ld dot(vec a, vec b) { return (a.x * b.x + a.y * b.y); }
+//	static ld norm_sq(vec v) { return v.x * v.x + v.y * v.y; }
+//	static ld distToLine(point p, point a, point b, point &c) // returns the distance from p to the line
+//	{ // formula: c = a + u * ab
+//		vec ap = toVec(a, p), ab = toVec(a, b);
+//		ld u = dot(ap, ab) / norm_sq(ab); c = translate(a, scale(ab, u));
+//		return c.dist(p, c);
+//	}
+//	static ld distToLineS(point p, point a, point b, point &c) // returns the distance from p to the segmemtline
+//	{ // formula: c = a + u * ab
+//		vec ap = toVec(a, p), ab = toVec(a, b);
+//		ld u = dot(ap, ab) / norm_sq(ab); c = translate(a, scale(ab, u));
+//		if (u < 0.0) { c = point(a.x, a.y); return c.dist(p, a); } // closer to a	
+//		if (u > 1.0) { c = point(b.x, b.y); return c.dist(p, b); }// closer to b 
+//		return distToLine(p, a, b, c);
+//	}
+//	static ld angle(point a, point o, point b)//returns angle aob in rad
+//	{
+//		vec oa = toVec(o, a), ob = toVec(o, b);
+//		return acos(dot(oa, ob) / sqrt(norm_sq(oa) * norm_sq(ob)));
+//	}
+//	static ld cross(vec a, vec b) { return a.x * b.y - a.y * b.x; }
+//	 //returns true if point r is on the left side of line pq 
+//	static bool ccw(point p, point q, point r) { return cross(toVec(p, q), toVec(p, r)) > 0; }
+//	 //returns true if point r is on the same line as the line pq 
+//	static bool collinear(point p, point q, point r) { return fabs(cross(toVec(p, q), toVec(p, r))) < EPS; }
+//};
+//class polygon
+//{
+//public:
+//	static point pivot;
+//	ld perimeter(const vector<point> &P)//P[0]==p[n-1]
+//	{
+//		ld result = 0.0; 
+//		lop(i,0,sz(P)-1)result += point::dist(P[i], P[i+1]);
+//		return result; 
+//	}
+//	ld area(const vector<point> &P) 
+//	{ 
+//		ld result = 0.0, x1, y1, x2, y2;
+//		lop(i,0,sz(P)-1)
+//		{ 
+//			x1 = P[i].x; x2 = P[i+1].x; 
+//			y1 = P[i].y; y2 = P[i+1].y; 
+//			result += (x1 * y2 - x2 * y1); 
+//		} 
+//		return fabs(result) / 2.0;
+//	}
+//	bool isConvex(const vector<point> &P) 
+//	{   
+//		if (sz(P) <= 3) return false; 
+//		bool isLeft = vec::ccw(P[0], P[1], P[2]); 
+//	    lop(i,1,sz(P)-1)
+//			if (vec::ccw(P[i], P[i+1], P[(i+2) == sz(P) ? 1 : i+2]) != isLeft) return false;
+//	    return true; 
+//	} 
+//	bool inPolygon(point pt, const vector<point> &P)
+//	{ 
+//		if (sz(P) == 0)return false;
+//		ld sum = 0; 
+//		lop(i,0,sz(P)-1)
+//		{
+//			if (vec::ccw(pt, P[i], P[i+1])) sum += vec::angle(P[i], pt, P[i+1]); 
+//			else sum -= vec::angle(P[i], pt, P[i+1]);
+//		} 
+//		return fabs(fabs(sum) - 2*PI) < EPS;
+//	}
+//	// line segment p-q intersect with line A-B. 
+//	point lineIntersectSeg(point p, point q, point A, point B)
+//	{ 
+//		ld a = B.y - A.y; 
+//		ld b = A.x - B.x; 
+//		ld c = B.x * A.y - A.x * B.y; 
+//		ld u = fabs(a * p.x + b * p.y + c); 
+//		ld v = fabs(a * q.x + b * q.y + c);
+//		return point((p.x * v + q.x * u) / (u+v), (p.y * v + q.y * u) / (u+v)); 
+//	}
+//// cuts polygon Q along the line formed by point a -> point b
+//	// (note: the last point must be the same as the first point)
+//	//P is the left polygon of a-b if you want the right side swap(a,b);
+//	vector<point> cutPolygon(point a, point b, const vector<point> &Q) 
+//	{ 
+//		vector<point> P; 
+//		lop(i,0,sz(Q)-1)
+//		{
+//			ld left1 = vec::cross(vec::toVec(a, b), vec::toVec(a, Q[i])), left2 = 0; 
+//			if (i != sz(Q)-1) left2 = vec::cross(vec::toVec(a, b), vec::toVec(a, Q[i+1])); 
+//			if (left1 > -EPS) P.push_back(Q[i]); // Q[i] is on the left of ab 
+//			if (left1 * left2 < -EPS) // edge (Q[i], Q[i+1]) crosses line ab
+//			P.push_back(lineIntersectSeg(Q[i], Q[i+1], a, b));
+//		} 
+//		if (!P.empty() && !(P.back() == P.front())) P.push_back(P.front());
+//		return P; 
+//	}
+//static bool angleCmp(point a, point b) // angle-sorting function 
+//{
+//	if (vec::collinear(pivot, a, b)) // special case 
+//	return point::dist(pivot, a) < point::dist(pivot, b); 
+//	ld d1x = a.x - pivot.x, d1y = a.y - pivot.y;
+//	ld d2x = b.x - pivot.x, d2y = b.y - pivot.y; 
+//	return (atan2(d1y, d1x) - atan2(d2y, d2x)) < 0; 
+//}
+//static vector<point> Convex_Hull(vector<point> P) 
+//{ 
+//	int n=sz(P);
+//	if (sz(P) <= 3) 
+//	{ 
+//		if (!(P[0] == P[n-1])) P.push_back(P[0]); 
+//		return P;
+//	} 
+//	int P0 = 0;
+//	lop(i,1,n) 
+//		if (P[i].y < P[P0].y || (P[i].y == P[P0].y && P[i].x > P[P0].x)) P0 = i;
+//	swap(P[0],P[P0]);pivot = P[0];
+//       sort(++P.begin(), P.end(), angleCmp);
+//	vector<point> S; 
+//	S.push_back(P[n-1]); S.push_back(P[0]); S.push_back(P[1]); 
+//	int i=2,j;
+//	while (i < n) 
+//	{ 
+//		j = sz(S)-1; 
+//		if (vec::ccw(S[j-1], S[j], P[i])) S.push_back(P[i++]); 
+//		else S.pop_back(); 
+//	} 
+//	return S;
+//} 
+//static point polyginCentroid(vector<point> &polygon) 
+//{  
+//	point res;  long double a = 0;  
+//	for (int i = 0; i < (int) polygon.size()-1; i++) 
+//	{   
+//		int j = (i + 1);  
+//           res.x += (polygon[i].x + polygon[j].x) * (polygon[i].x * polygon[j].y - polygon[j].x * polygon[i].y);  
+//           res.y += (polygon[i].y + polygon[j].y) * (polygon[i].x * polygon[j].y - polygon[j].x * polygon[i].y);  
+//           a += polygon[i].x * polygon[j].y - polygon[i].y * polygon[j].x; 
+//	}  
+//       a *= 0.5;  res.x /= 6 * a;  res.y /= 6 * a;  
+//       return res; 
+//}
+//};
+//class circle
+//{
+//	circle
+//	perimeter = 2*PI*r;
+//	area = PI*r*r;
+//	arc = perimeter*(1 / 360.00)*theta_arc;
+//	Chord = 2 * r*r*(1 - cos(theta_chord));
+//	sector=((theta_arc)/360.00)*area;
+//	segment=sector-tringle_area;
+//
+//	tringle
+//	area=.5*base*height;=a*b*sin(c)/2
+//	perimeter=a+b+c;
+//	q=.5*perimeter;
+//	area=q*(q-a)*(q-b)*(q-c);
+//	incircle_radius=area/q             center is bisectors of angles
+//
+//	int inCircle(point p1, point p2, point p3, point &ctr, ld &r) {
+//		r/* = rInCircle(p1, p2, p3)*/; 
+//		if (fabs(r) < EPS) return 0;
+//		line l1, l2; 
+//		ld ratio = p1.dist(p1, p2) / p1.dist(p1, p3);
+//		point p = translate(p2, scale(toVec(p2, p3), ratio / (1 + ratio))); 
+//		pointsToLine(p1, p, l1);
+//		ratio = dist(p2, p1) / dist(p2, p3); 
+//		p = translate(p1, scale(toVec(p1, p3), ratio / (1 + ratio)));
+//		pointsToLine(p2, p, l2);
+//		areIntersect(l1, l2, ctr); // get their intersection point 
+//		return 1;
+//	}
+//
+//	circumcircle_radius=(a*b*c)/(4*area);  center is bisectors of lengths
+//
+//	if(a+b>c)then it can be tringle if a,b,c sorted
+//
+//	c*c=a*a+b*b-2*a*b*cos(c_theta)
+//	a/sin(theta_a)=b/sin(theta_b)=c/sin(theta_c)=2*circumcircle_radius
+
+//  kit_area=Rhombus_area=diagonal1*diagonal2/2
+
+//};
+
+//pair<point, ld> circumcircle(point a, point b, point c){
+//	ld A = 2 * (b.x - a.x);
+//	ld B = 2 * (b.y - a.y);
+//	ld C = (a.x)*(a.x) + (a.y)*(a.y) - (b.x)*(b.x) - (b.y)*(b.y);
+//	ld D = 2 * (c.x - a.x);
+//	ld E = 2 * (c.y - a.y);
+//	ld F = (a.x)*(a.x) + (a.y)*(a.y) - (c.x)*(c.x) - (c.y)*(c.y);
+//	ld x = (B*F - C*E) / (A*E - B*D);
+//	ld y = (C*D - A*F) / (A*E - B*D);
+//	return pair<point, ld>(point(x, y), sqrt((a.x - x)*(a.x - x) + (a.y - y)*(a.y - y)));
+//}
+
+//bool circle2PtsRad(point p1, point p2, ld r, point &c)
+//{
+//	ld d2 = (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y);
+//	ld det = r * r / d2 - 0.25;
+//	if (det < 0.0) return false;
+//	ld h = sqrt(det);
+//	c.x = (p1.x + p2.x) * 0.5 + (p1.y - p2.y) * h;
+//	c.y = (p1.y + p2.y) * 0.5 + (p2.x - p1.x) * h;
+//	return true;
+//}
+
+
+//An ellipse is the set of points, {P}, such that the distance from P to a fixed 
+//point F1, plus the distance from P to a fixed point F2 is a constant for all points in the set .
+//Area=a*b*PI
+
+//void intersection_rectangle(point r1[2], point r2[2])
+//{
+//	int a = max(r1[0].x, r2[0].x);
+//	int b = max(r1[0].y, r2[0].y);
+//	int c = min(r1[1].x, r2[1].x);
+//	int d = min(r1[1].y, r2[1].y);
+//	if (a >= c || b >= d)cout << "No Overlap\n";
+//	else cout << a << " " << b << " " << c << " " << d << endl;
+//}
+
+//int CI(int A[], int l, int r, int key) {
+//    int m;
+//    while( r - l > 1 ) {
+//        m = l + (r - l)/2;
+//        (A[m] >= key ? r : l) = m;
+//    }
+//    return r;
+//}
+//
+//int LIS(int A[], int size) {
+//    int *B   = new int[size];
+//    int len=1;
+//    memset(B, 0, sizeof(B[0])*size);
+//    B[0] = A[0];
+//    for( int i = 1; i < size; i++ ) {
+//        if(A[i]<B[0])B[0] = A[i];
+//        else if(A[i]>B[len-1])B[len++] = A[i];
+//        else B[CI(B, -1, len-1, A[i])] = A[i];
+//    }
+//    return len;
+//}
+
+//
+//int GetCeilIndex(int A[], int T[], int l, int r, int key)
+//{
+//	int m;
+//	while (r - l > 1) {
+//		m = l + (r - l) / 2;
+//		if (A[T[m]] >= key)r = m; else l = m;
+//	}
+//	return r;
+//}
+//void LongestIncreasingSubsequence(int A[], int size) {
+//	int *tailIndices = new int[size];
+//	int *prevIndices = new int[size];
+//	int len;
+//
+//	memset(tailIndices, 0, sizeof(tailIndices[0])*size);
+//	memset(prevIndices, 0xFF, sizeof(prevIndices[0])*size);
+//
+//	tailIndices[0] = 0;
+//	prevIndices[0] = -1;
+//	len = 1;
+//	for (int i = 1; i < size; i++) {
+//		if (A[i] < A[tailIndices[0]]) {
+//			tailIndices[0] = i;
+//		}
+//		else if (A[i] > A[tailIndices[len - 1]]) {
+//			prevIndices[i] = tailIndices[len - 1];
+//			tailIndices[len++] = i;
+//		}
+//		else {
+//			int pos = GetCeilIndex(A, tailIndices, -1, len - 1, A[i]);
+//
+//			prevIndices[i] = tailIndices[pos - 1];
+//			tailIndices[pos] = i;
+//		}
+//	}
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+//Xn=a^n+b^n;Xn=X1*Xn-1-(a*b)*Xn-2
+//void pal(string s)
+//{
+//	lop(i, 0, N)isPal[i][i] = 1;
+//	lop(L, 2, N + 1)
+//		lop(i, 0, N - L + 1)
+//	{
+//		int j = i + L - 1;
+//		if (L == 2)isPal[i][j] = (s[i] == s[j]);
+//		else isPal[i][j] = (s[i] == s[j]) && (isPal[i + 1][j - 1]);
+//	}
+//}
+//
+//int LCS(int i, int j)
+//{
+//	if (i == s1.length() || j == s2.length())return 0;
+//	if (mem[i][j] != -1)return mem[i][j];
+//	if (s1[i] == s2[j])return  mem[i][j] = LCS(i + 1, j + 1) + 1;
+//	return  mem[i][j] = max(LCS(i, j + 1), LCS(i + 1, j));
+//}
+//string print_LCS()
+//{
+//	string ans;
+//	memset(mem, -1, sizeof mem);
+//	LCS(0, 0);
+//	int i = 0, j = 0;
+//	while (i < s1.length() && j < s2.length())
+//	{
+//		if (s1[i] == s2[j]) { ans += s1[i]; i++, j++; }
+//		else
+//			if (mem[i + 1][j] > mem[i][j + 1])i++;
+//			else j++;
+//	}
+//	return ans;
+//}
+
+//void Dartboard_Sequence()
+//{
+//	ans[1] = 1;
+//	ans[2] = 1;
+//	ans[3] = 1;
+//	ans[4] = 3;
+//	ans[5] = 8;
+//	ans[6] = 21;
+//	lop(i, 7, 21)
+//	{
+//		if (i % 2)ans[i] = (i*i*i - 16 * i + 27) / 6;
+//		else ans[i] = (i*i*i - 16 * i + 30) / 6;
+//	}
+//}
+
+
+
+
+
+
+/*
+**************************************Furmala***************************************************
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+*																							   *
+************************************************************************************************
+*/
